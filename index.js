@@ -1,12 +1,48 @@
-const DBconnect = require("./mongodb");
+const mongoose = require("mongoose");
 
-const getAllData = async () => {
-  const db = await DBconnect();
-  const data = await db.find({}).toArray();
-  if (data) {
-    console.log("Data Fetched Successfully");
-    console.log(data);
-  }
+const dbUrl = "mongodb://localhost:27017";
+const dataBaseName = "api_v1";
+
+mongoose.connect(`${dbUrl}/${dataBaseName}`);
+const productSchema = new mongoose.Schema({
+  name: String,
+  price: Number,
+  brand: String,
+  category: String,
+});
+
+const saveInDB = async () => {
+  const Product = mongoose.model("products", productSchema);
+  let data = new Product({
+    name: "max 100",
+    price: 200,
+    brand: "maxx",
+    category: "Mobile",
+  });
+  const result = await data.save();
+  console.log(result);
 };
 
-getAllData();
+const updateInDB = async () => {
+  const Product = mongoose.model("products", productSchema);
+  let data = await Product.updateOne(
+    { name: "max 6" },
+    {
+      $set: { price: 550, name: "max pro 6" },
+    }
+  );
+  console.log(data);
+};
+
+const deleteInDB = async () => {
+  const Product = mongoose.model("products", productSchema);
+  let data = await Product.deleteOne({ name: "max 100" });
+  console.log(data);
+};
+const findInDB = async () => {
+  const Product = mongoose.model("products", productSchema);
+  let data = await Product.find({ });
+  console.log(data);
+};
+
+findInDB();
