@@ -13,4 +13,15 @@ app.post("/create", async (req, res) => {
   let result = await data.save();
   res.send(result);
 });
+
+app.get("/list", async (req, res) => {
+  let data = await Products.find();
+  res.send(data);
+});
+
+app.delete("/delete/:_id", async (req, res) => {
+  let data = await Products.deleteOne(req.params);
+  res.send(data);
+});
+
 app.listen(5000);
