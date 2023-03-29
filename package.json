@@ -2,23 +2,32 @@
   "name": "node_api_v1",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "start": "nodemon"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/AwaisSikander/node_api_v1.git"
+    "start": "nodemon node  src/index.js"
   },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/AwaisSikander/node_api_v1/issues"
-  },
-  "homepage": "https://github.com/AwaisSikander/node_api_v1#readme",
   "dependencies": {
-    "express": "^4.18.1",
-    "mongodb": "^4.7.0",
-    "nodemon": "^2.0.18"
+    "dotenv": "^16.0.3",
+    "express": "4.17.1",
+    "knex": "^2.4.2",
+    "module-alias": "^2.2.2",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "2.0.4"
+  },
+  "_moduleAliases": {
+    "@root": ".",
+    "@configs": "src/configs",
+    "@controllers": "src/controllers",
+    "@middlewares": "src/middlewares",
+    "@routes": "src/routes",
+    "@utils": "src/utils",
+    "@services": "src/services",
+    "@databases": "src/databases",
+    "@entities": "src/entities"
   }
 }
